@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  devcontainer-example:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+
+    volumes:
+      - ..:/workspace:cached
+      - devcontainer-example:/devcontainer-example
+
+    privileged: true
+
+    environment:
+      - TZ=Europe/Zurich
+      # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+volumes:
+  devcontainer-example:
